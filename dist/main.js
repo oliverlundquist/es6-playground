@@ -43,6 +43,23 @@ describe('arrow_functions', function() {
 });
 
 "use strict";
+describe('rest_parameter', function() {
+  it('should sum all passed parameters', function() {
+    var sum = function() {
+      for (var args = [],
+          $__0 = 0; $__0 < arguments.length; $__0++)
+        args[$__0] = arguments[$__0];
+      var result = 0;
+      for (var arg in args) {
+        result += args[arg];
+      }
+      return result;
+    };
+    expect(sum(2, 3, 4)).toEqual(9);
+  });
+});
+
+"use strict";
 var $__0 = Object.freeze(Object.defineProperties(["", " + ", " is ", ""], {raw: {value: Object.freeze(["", " + ", " is ", ""])}}));
 describe('template_literals', function() {
   it('should interpolate string', function() {
