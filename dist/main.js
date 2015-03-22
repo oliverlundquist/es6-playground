@@ -42,4 +42,30 @@ describe('arrow_functions', function() {
   });
 });
 
+"use strict";
+var $__0 = Object.freeze(Object.defineProperties(["", " + ", " is ", ""], {raw: {value: Object.freeze(["", " + ", " is ", ""])}}));
+describe('template_literals', function() {
+  it('should interpolate string', function() {
+    var name = "world";
+    var result = ("Hello, " + name);
+    expect(result).toEqual("Hello, world");
+  });
+  it('should respond to tagged function', function() {
+    var x = 1;
+    var y = 3;
+    var double_value = function(strings) {
+      for (var values = [],
+          $__1 = 1; $__1 < arguments.length; $__1++)
+        values[$__1 - 1] = arguments[$__1];
+      var result = '';
+      for (var i in strings) {
+        result += strings[i] + (values[i] ? (values[i] + values[i]) : '');
+      }
+      return result;
+    };
+    var result = double_value($__0, x, y, (x + y));
+    expect(result).toEqual('2 + 6 is 8');
+  });
+});
+
 //# sourceMappingURL=main.js.map
