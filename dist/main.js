@@ -91,6 +91,23 @@ describe('rest_parameter', function() {
 });
 
 "use strict";
+describe('spread_parameters', function() {
+  it('should spread arguments when calling a function', function() {
+    var f = function(x, y, z) {
+      return x + y + z;
+    };
+    var data = [1, 2, 3];
+    var result = f.apply((void 0), $traceurRuntime.spread(data));
+    expect(result).toEqual(6);
+  });
+  it('should spread into an array', function() {
+    var data = [1, 2, 3];
+    var result = $traceurRuntime.spread([0], data, [4]);
+    expect(result).toEqual([0, 1, 2, 3, 4]);
+  });
+});
+
+"use strict";
 var $__0 = Object.freeze(Object.defineProperties(["", " + ", " is ", ""], {raw: {value: Object.freeze(["", " + ", " is ", ""])}}));
 describe('template_literals', function() {
   it('should interpolate string', function() {
