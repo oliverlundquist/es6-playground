@@ -1,31 +1,42 @@
-var square = x => x * x;
-console.log(square(3)); //9
+describe('arrow_functions', function () {
 
-var multiply = (x, y) => x * y;
-console.log(multiply(2, 3)); //6
+    it('should return square value', function () {
+        var square = x => x * x;
+        expect(square(3)).toEqual(9);
+    });
 
-var add = (x, y, z) => {
-    return x + y + z;
-}
-console.log(add(1, 2, 0)); //3
+    it('should multiply parameters', function () {
+        var multiply = (x, y) => x * y;
+        expect(multiply(2, 3)).toEqual(6);
+    });
 
-var numbers = [1, 1, 2];
-var sum = numbers.map(x => x + x);
-console.log(sum); //[2, 2, 4]
+    it('should add parameters', function () {
+        var add = (x, y, z) => {
+            return x + y + z;
+        }
+        expect(add(1, 2, 0)).toEqual(3);
+    });
 
+    it('should double array values', function () {
+        var numbers = [1, 1, 2];
+        var sum = numbers.map(x => x + x);
+        expect(sum).toEqual([2, 2, 4]);
+    });
 
+    it('should return undefined when arrow function is not used', function (done) {
+        this.outerScope = 'outerScope';
+        setTimeout(function () {
+            expect(this.outerScope).toBeUndefined();
+            done();
+        }, 0);
+    });
 
-//scope in arrow functions
-function scope() {
-    this.outerScope = 'outerScope';
+    it('should return value when arrow function is used', function (done) {
+        this.outerScope = 'outerScope';
+        setTimeout(() => {
+            expect(this.outerScope).toEqual('outerScope');
+            done();
+        }, 0);
+    });
 
-    setTimeout(function () {
-        console.log(this.outerScope); //undefined
-    }, 0);
-
-    setTimeout(() => {
-        console.log(this.outerScope); //outerScope
-    }, 0);
-
-};
-new scope();
+});
